@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,36 +5,48 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="shortcut icon" type="image/png" href="https://img.icons8.com/officel/52/000000/radio-tower.png" />
-  <title>Anten IO : Apps : Propagation</title>
+  <link rel="shortcut icon" type="image/png"
+    href="https://img.icons8.com/officel/52/000000/radio-tower.png" />
+  <title>Anten IO : Propagation</title>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-126752612-1"></script>
+  <script async
+    src="https://www.googletagmanager.com/gtag/js?id=UA-126752612-2"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
 
-    gtag('config', 'UA-126752612-1');
+    gtag('config', 'UA-126752612-2');
   </script>
 
+
   <!-- JQuery -->
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
 
   <!-- Bootstrap -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <link rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+    crossorigin="anonymous">
+  <script
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
 
-  <!-- Mapbox -->  
-  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.js'></script>
-  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.css' rel='stylesheet' />
+  <!-- Mapbox -->
+  <script
+    src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.css'
+    rel='stylesheet' />
 
   <!-- Semantic UI -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+  <script
+    src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 
   <!--<link href='node_modules/semantic-ui-button/button.min.css' rel='stylesheet' />
   <link href='node_modules/semantic-ui-icon/icon.min.css' rel='stylesheet' />
@@ -54,14 +65,16 @@
   <script src="https://cdn.jsdelivr.net/npm/@turf/turf@5/turf.min.js"></script>
 
   <!-- Async.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/async/3.1.0/async.min.js" integrity="sha256-Pdd9BewcEhv9cjGCHEY0Hqk6Fmj6izNGrw1/mo61zRI=" crossorigin="anonymous"></script>
- 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/async/3.1.0/async.min.js"
+    integrity="sha256-Pdd9BewcEhv9cjGCHEY0Hqk6Fmj6izNGrw1/mo61zRI="
+    crossorigin="anonymous"></script>
+
   <!-- Math.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/6.2.2/math.min.js" integrity="sha256-D/MkugLuxx4Xx0Kb92cUhpxlCMhUvQ0eOtEL8Ol23jM=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/6.2.2/math.min.js"
+    integrity="sha256-D/MkugLuxx4Xx0Kb92cUhpxlCMhUvQ0eOtEL8Ol23jM="
+    crossorigin="anonymous"></script>
 
   <style>
-    
-    
     body {
       margin: 0;
       padding: 0;
@@ -96,18 +109,18 @@
       width: 250px;
       display: none;
     }
-    
+
     /* navbar text color */
 
-.navbar .navbar-brand {
-  color: #fed136
-}
+    .navbar .navbar-brand {
+      color: #fed136
+    }
 
-.navbar>.navbar-brand a {
-  color: #fed136
-}
+    .navbar>.navbar-brand a {
+      color: #fed136
+    }
 
-/* @media (min-width: 768px) {
+    /* @media (min-width: 768px) {
   .navbar> .navbar-brand {
     color: rgba(255, 255, 255, 0.7)
   }
@@ -116,60 +129,62 @@
   }
 } */
 
-.navbar-brand {
-  font-size: 16px;
-  margin-right: 0rem;
-}
+    .navbar-brand {
+      font-size: 16px;
+      margin-right: 0rem;
+    }
 
-@media (min-width: 768px) {
-  .navbar-brand {
-    font-size: 18px;
-  }
-}
+    @media (min-width: 768px) {
+      .navbar-brand {
+        font-size: 18px;
+      }
+    }
 
-.nav-link {
-  font-size: 14px;
-}
+    .nav-link {
+      font-size: 14px;
+    }
 
-@media (min-width: 768px) {
-  .nav-link {
-    font-size: 16px;
-  }
-}
+    @media (min-width: 768px) {
+      .nav-link {
+        font-size: 16px;
+      }
+    }
 
-.navbar .navbar-toggler {
-  border-color: #ddd;
-}
+    .navbar .navbar-toggler {
+      border-color: #ddd;
+    }
 
-.navbar-toggler {
-  background-color: #fed136;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  font-size: 1.00em;
-}
+    .navbar-toggler {
+      background-color: #fed136;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      font-size: 1.00em;
+    }
 
-.navbar-toggler-icon {
-  height: 1.25em;
-  width: 1.25em;
-}
+    .navbar-toggler-icon {
+      height: 1.25em;
+      width: 1.25em;
+    }
 
-@media (min-width: 768px) {
-  .navbar-toggler-icon {
-    height: 1em;
-    width: 1em;
-  }
-}
+    @media (min-width: 768px) {
+      .navbar-toggler-icon {
+        height: 1em;
+        width: 1em;
+      }
+    }
 
-.navbar-dark .navbar-toggler-icon {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#888' stroke-width='3' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-}
+    .navbar-dark .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#888' stroke-width='3' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    }
   </style>
 </head>
 
 <body class="bg-white">
   <!-- Navbar -->
-  <nav class="navbar navbar-inverse navbar-expand-sm fixed-top" style="background-color: #212529;">
-    <div class="navbar-brand"><a href="/">Anten IO</a> : <a href="/#apps">Apps</a>
+  <nav class="navbar navbar-inverse navbar-expand-sm fixed-top"
+    style="background-color: #212529;">
+    <div class="navbar-brand"><a href="/">Anten IO</a> : <a
+        href="/#apps">Apps</a>
       : <a href="/apps/propagation/index.html">Propagation</a></div>
     <!-- <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedConten" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -189,7 +204,8 @@
     <button id="configuration-open" class="circular ui black icon button mt-2">
       <i class="icon large settings"></i>
     </button>
-    <div id="configuration" class="ui inverted segment" style="width:250px; display:none;">
+    <div id="configuration" class="ui inverted segment"
+      style="width:250px; display:none;">
       <div class="ui fluid inverted mini form">
         <div class="row justify-content-left mb-2">
           <i id="configuration-close" class="icon big chevron left"></i>
@@ -203,7 +219,8 @@
           <div id="propagation-content" class="content">
             <div class="transition hidden field">
               <label class="">Frequency [MHz]</label>
-              <input id="frequency" class="" placeholder="in MHz" value="2450" type="number">
+              <input id="frequency" class="" placeholder="in MHz" value="2450"
+                type="number">
               <label class="mt-1">Analysis</label>
               <select id="propagation-analysis" class="ui selection dropdown">
                 <option value="coverage">Coverage</option>
@@ -213,7 +230,8 @@
                 <option value="free-space">Free space</option>
               </select>
               <label class="mt-1">Environment</label>
-              <select id="propagation-environment" class="ui selection dropdown">
+              <select id="propagation-environment"
+                class="ui selection dropdown">
                 <option value="no-terrain">None</option>
               </select>
             </div>
@@ -226,24 +244,29 @@
             <div class="transition hidden field">
               <div id="transmitter-position">
                 <label class="">Position [lat, lon]</label>
-                <input type="text" readonly="" placeholder="lat, lon" value="41, 29">
-                <div id="transmitter-position-set" class="mt-1 ui fluid mini inverted basic button">
+                <input type="text" readonly="" placeholder="lat, lon"
+                  value="41, 29">
+                <div id="transmitter-position-set"
+                  class="mt-1 ui fluid mini inverted basic button">
                   Set
                 </div>
               </div>
               <div id="transmitter-antenna-height">
                 <label class="mt-1">Antenna height [m]</label>
-                <input class="" placeholder="in meters" type="number" value="10">
+                <input class="" placeholder="in meters" type="number"
+                  value="10">
               </div>
               <div>
                 <label class="hidden mt-1">Antenna pattern</label>
-                <select id="transmitter-antenna-pattern" class="ui selection dropdown fluid">
+                <select id="transmitter-antenna-pattern"
+                  class="ui selection dropdown fluid">
                   <option value="isotropic">Isotropic</option>
                 </select>
               </div>
               <div id="transmitter-power">
                 <label class="mt-1">Input power [mW]</label>
-                <input class="" placeholder="in milli-Watts" value="1" type="number">
+                <input class="" placeholder="in milli-Watts" value="1"
+                  type="number">
               </div>
             </div>
           </div>
@@ -254,7 +277,8 @@
 
 
   <div id="proceed" class="container-fluid">
-    <button id="analyze" class="circular ui black icon button mt-2" onclick="run()">
+    <button id="analyze" class="circular ui black icon button mt-2"
+      onclick="run()">
       <i class="icon large play"></i>
     </button>
   </div>
@@ -262,8 +286,10 @@
   <div id="transmitter-position-set-ui" class="container-fluid">
     <div class="ui inverted segment" style="padding: 3px;">
       <div class="ui fluid inverted mini form">
-        <input id="transmitter-position-set-input" type="text" placeholder="lat,lon">
-        <div id="transmitter-position-set-okay" class="ui fluid mini inverted basic button">Okay</div>
+        <input id="transmitter-position-set-input" type="text"
+          placeholder="lat,lon">
+        <div id="transmitter-position-set-okay"
+          class="ui fluid mini inverted basic button">Okay</div>
       </div>
     </div>
   </div>
@@ -284,9 +310,9 @@
     });
 
     var transmitter_position = new mapboxgl.Marker().setLngLat([29, 41])
-    map.on("load", function() {
+    map.on("load", function () {
       transmitter_position.addTo(map)
-      map.on("click", function(e) {
+      map.on("click", function (e) {
         if (lastFocused == "transmitter-position-set-ui") {
           $("#transmitter-position-set-input").val("" + e.lngLat.lat + ", " + e.lngLat.lng)
           transmitter_position.setLngLat({ lng: e.lngLat.lng, lat: e.lngLat.lat })
@@ -302,12 +328,12 @@
     // configuration events 
     var is_configuration_opened = false;
 
-    $('#configuration-open').click(function(e) {
+    $('#configuration-open').click(function (e) {
       $(this).transition({
         animation: 'fade left out',
         duration: 500
       })
-      setTimeout(function() {
+      setTimeout(function () {
         $("#configuration").transition({
           animation: 'fade right in',
           duration: 500
@@ -318,12 +344,12 @@
         }
       }, 500)
     })
-    $('#configuration-close').click(function(e) {
+    $('#configuration-close').click(function (e) {
       $("#configuration").transition({
         animation: 'fade left out',
         duration: 500
       })
-      setTimeout(function() {
+      setTimeout(function () {
         $('#configuration-open').transition({
           animation: 'fade right in',
           duration: 500
@@ -331,7 +357,7 @@
       }, 500)
     })
 
-    $("#propagation-analysis").change(function() {
+    $("#propagation-analysis").change(function () {
       console.log($("#propagation-analysis").val())
     })
 
@@ -339,13 +365,13 @@
     //$("#transmitter-head").hide("")
     //$("#transmitter-content").hide("")
 
-    $("#transmitter-position-set").click(function(e) {
+    $("#transmitter-position-set").click(function (e) {
       setFocused("transmitter-position-set-ui")
       $("#configuration").transition({
         animation: 'fade left out',
         duration: 500
       })
-      setTimeout(function() {
+      setTimeout(function () {
         $('#transmitter-position-set-ui').transition({
           animation: 'fade right in',
           duration: 500
@@ -353,7 +379,7 @@
       }, 500)
     })
 
-    $("#transmitter-position-set-okay").click(function(e) {
+    $("#transmitter-position-set-okay").click(function (e) {
       $("#transmitter-position > input").val($("#transmitter-position-set-input").val())
 
       setFocused("")
@@ -361,7 +387,7 @@
         animation: 'fade left out',
         duration: 500
       })
-      setTimeout(function() {
+      setTimeout(function () {
         $('#configuration').transition({
           animation: 'fade right in',
           duration: 500
@@ -369,17 +395,17 @@
       }, 500)
     })
 
-    $("#transmitter-position-set-input").keyup(function() {
+    $("#transmitter-position-set-input").keyup(function () {
       var latlng = $("#transmitter-position-set-input").val().split(", ")
       transmitter_position.setLngLat({ lat: latlng[0], lng: latlng[1] })
     })
 
 
-    function rhr(hgt){ return 4.12*Math.sqrt(hgt) }
-    function pls(frq, rng){ return 32.45+20*Math.log10(frq*rng) }
-    function run(){
+    function rhr(hgt) { return 4.12 * Math.sqrt(hgt) }
+    function pls(frq, rng) { return 32.45 + 20 * Math.log10(frq * rng) }
+    function run() {
       var height = Number($("#transmitter-antenna-height > input").val())
-      var horizon = 4.12*Math.sqrt(height)
+      var horizon = 4.12 * Math.sqrt(height)
       var ltl = $("#transmitter-position > input").val()
       var lat = Number(ltl.split(',')[0])
       var lng = Number(ltl.split(',')[1])
@@ -390,27 +416,27 @@
       console.log('\t height   : ', height)
       console.log("Radio horizon: ", horizon)
 
-      var ranges = math.range(horizon/10,horizon,horizon/10,true)._data
+      var ranges = math.range(horizon / 10, horizon, horizon / 10, true)._data
       counter = 0
-      ranges.forEach(function(range){
+      ranges.forEach(function (range) {
         counter++
-        if(counter == ranges.length){
+        if (counter == ranges.length) {
           console.log("Finished")
         }
       })
       console.log(ranges)
       var nng = 361
-      var ngl = Array.apply(null, Array(nng)).map(function (_, i) {return i;});
+      var ngl = Array.apply(null, Array(nng)).map(function (_, i) { return i; });
       var pnt = turf.point([lng, lat]);
       var dst = rhr(hgt)
       var crd = []
       var cnt = 0
-      ngl.forEach(function(brn){
+      ngl.forEach(function (brn) {
         var npt = turf.destination(pnt, dst, brn).geometry.coordinates
         crd.push(npt)
         //console.log('Angle: ', brn, ': lat=', npt[1], 'lng=', npt[0])
         cnt++
-        if(cnt == nng){
+        if (cnt == nng) {
           map.addLayer({
             'id': 'maine',
             'type': 'fill',
@@ -419,8 +445,8 @@
               'data': {
                 'type': 'Feature',
                 'geometry': {
-                'type': 'Polygon',
-                'coordinates': [crd]
+                  'type': 'Polygon',
+                  'coordinates': [crd]
                 }
               }
             },
@@ -429,11 +455,11 @@
               'fill-color': '#088',
               'fill-opacity': 0.8
             }
-          }) 
+          })
 
-          var fpu = turf.destination(pnt, dst*1.5, 45).geometry.coordinates
-          var fpd = turf.destination(pnt, dst*1.5, 225).geometry.coordinates
-          map.fitBounds([fpu,fpd])
+          var fpu = turf.destination(pnt, dst * 1.5, 45).geometry.coordinates
+          var fpd = turf.destination(pnt, dst * 1.5, 225).geometry.coordinates
+          map.fitBounds([fpu, fpd])
         }
       })
     }
