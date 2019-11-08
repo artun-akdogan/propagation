@@ -56,6 +56,9 @@
   <!-- Math.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/6.2.2/math.min.js" integrity="sha256-D/MkugLuxx4Xx0Kb92cUhpxlCMhUvQ0eOtEL8Ol23jM=" crossorigin="anonymous"></script>
 
+  <!-- JS Colormaps -->
+  <script src="js/js-colormaps.js"></script>
+
   <style>
     body {
       margin: 0;
@@ -330,10 +333,6 @@
       console.log($("#propagation-analysis").val())
     })
 
-    // transmitter events 
-    //$("#transmitter-head").hide("")
-    //$("#transmitter-content").hide("")
-
     $("#transmitter-position-set").click(function (e) {
       setFocused("transmitter-position-set-ui")
       $("#configuration").transition({
@@ -396,36 +395,120 @@
       console.log(ranges)
       console.log(angles)
       console.log(coordinates)
-      /*ngl.forEach(function (brn) {
-        crd.push(npt)
-        //console.log('Angle: ', brn, ': lat=', npt[1], 'lng=', npt[0])
-        cnt++
-        if (cnt == nng) {
-          map.addLayer({
-            'id': 'maine',
-            'type': 'fill',
-            'source': {
-              'type': 'geojson',
-              'data': {
-                'type': 'Feature',
-                'geometry': {
-                  'type': 'Polygon',
-                  'coordinates': [crd]
-                }
-              }
-            },
-            'layout': {},
-            'paint': {
-              'fill-color': '#088',
-              'fill-opacity': 0.8
+      // plot initial range circle
+      map.addLayer({
+        'id': 'maine',
+        'type': 'fill',
+        'source': {
+          'type': 'geojson',
+          'data': {
+            'type': 'Feature',
+            'geometry': {
+              'type': 'Polygon',
+              'coordinates': [coordinates[0]]
             }
-          })
-
-          var fpu = turf.destination(pnt, dst * 1.5, 45).geometry.coordinates
-          var fpd = turf.destination(pnt, dst * 1.5, 225).geometry.coordinates
-          map.fitBounds([fpu, fpd])
+          }
+        },
+        'layout': {},
+        'paint': {
+          'fill-color': interpolateLinearly(1, jet),
+          'fill-opacity': 0.8
         }
-      })*/
+      })
+      for (i = 0; i < rangesN - 1; i++) {
+        var points = []
+        points.push(coordinates[i][0])
+        for (j = 0; j < anglesN; j++) {
+          points.push(coordinates[i + 1][j])
+        }
+        for (j = anglesN - 1; j > 0; j--) {
+          points.push(coordinates[i][j])
+        }
+        map.addLayer({
+          'id': String(i + 1),
+          'type': 'fill',
+          'source': {
+            'type': 'geojson',
+            'data': {
+              'type': 'Feature',
+              'geometry': {
+                'type': 'Polygon',
+                'coordinates': [points]
+              }
+            }
+          },
+          'layout': {},
+          'paint': {
+            'fill-color': interpolateLinearly(Math.sqrt(Math.sqrt((1.0 / rangesN) * (rangesN / (i + 2)))), jet),
+            'fill-opacity': 0.8
+          }
+        })
+        console.log(Math.sqrt(Math.sqrt((1.0 / rangesN) * (rangesN / (i + 2)))))
+        map.on("mousemove", String(i + 1), function (e) {
+          if (e.features.length > 0) {
+            console.log(e.features[0])
+            console.log(e.lngLat)
+            // if (hoveredStateId) {
+              // console.log(hoveredStateId)
+            // }
+          }
+        })
+      }
+      var bound1 = turf.destination(turf.point([longitude, latitude]), horizon * 1.5, 45).geometry.coordinates
+      var bound2 = turf.destination(turf.point([longitude, latitude]), horizon * 1.5, 225).geometry.coordinates
+      map.fitBounds([bound1, bound2])
+
+    }
+
+
+    function enforceBounds(x) {
+      if (x < 0) {
+        return 0;
+      } else if (x > 1) {
+        return 1;
+      } else {
+        return x;
+      }
+    }
+    function interpolateLinearly(x, values) {
+      // Split values into four lists
+      var x_values = [];
+      var r_values = [];
+      var g_values = [];
+      var b_values = [];
+      for (i in values) {
+        x_values.push(values[i][0]);
+        r_values.push(values[i][1][0]);
+        g_values.push(values[i][1][1]);
+        b_values.push(values[i][1][2]);
+      }
+      var i = 1;
+      while (x_values[i] < x) {
+        i = i + 1;
+      }
+      i = i - 1;
+      var width = Math.abs(x_values[i] - x_values[i + 1]);
+      var scaling_factor = (x - x_values[i]) / width;
+      // Get the new color values though interpolation
+      var r = r_values[i] + scaling_factor * (r_values[i + 1] - r_values[i])
+      var g = g_values[i] + scaling_factor * (g_values[i + 1] - g_values[i])
+      var b = b_values[i] + scaling_factor * (b_values[i + 1] - b_values[i])
+      return RGBToHex(Math.round(255 * enforceBounds(r)), Math.round(255 * enforceBounds(g)), Math.round(255 * enforceBounds(b)));
+    }
+
+    function RGBToHex(r, g, b) {
+      r = r.toString(16);
+      g = g.toString(16);
+      b = b.toString(16);
+
+      if (r.length == 1)
+        r = "0" + r;
+      if (g.length == 1)
+        g = "0" + g;
+      if (b.length == 1)
+        b = "0" + b;
+
+      return "#" + r + g + b;
     }
   </script>
 
