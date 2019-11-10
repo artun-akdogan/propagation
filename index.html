@@ -59,6 +59,9 @@
   <!-- JS Colormaps -->
   <script src="js/js-colormaps.js"></script>
 
+  <!-- Patterns -->
+  <script src="js/patterns.js"></script>
+
   <style>
     body {
       margin: 0;
@@ -212,7 +215,7 @@
               </select>
               <label class="mt-1">Environment</label>
               <select id="propagation-environment" class="ui selection dropdown">
-                <option value="no-terrain">None</option>
+                <option value="flat-terrain">Flat terrain</option>
               </select>
             </div>
           </div>
@@ -236,7 +239,7 @@
               <div>
                 <label class="hidden mt-1">Antenna pattern</label>
                 <select id="transmitter-antenna-pattern" class="ui selection dropdown fluid">
-                  <option value="isotropic">Isotropic</option>
+                  <!-- <option value="isotropic">Isotropic</option> -->
                 </select>
               </div>
               <div id="transmitter-power">
@@ -267,7 +270,13 @@
   </div>
 
 
+
   <script>
+    patterns.forEach(pattern => {
+      $('#transmitter-antenna-pattern').append(`<option value="${pattern.id}">${pattern.name}</option>`);
+    })
+
+
     var lastFocused = ""
 
     function setFocused(id) {
@@ -449,7 +458,7 @@
             console.log(e.features[0])
             console.log(e.lngLat)
             // if (hoveredStateId) {
-              // console.log(hoveredStateId)
+            // console.log(hoveredStateId)
             // }
           }
         })
