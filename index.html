@@ -8,7 +8,7 @@
   <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
   <title>Anten IO : Propagation</title>
 
- <!-- Global site tag (gtag.js) - Google Analytics -->
+  <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-126752612-1"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -384,25 +384,29 @@
       var horizon = 4.12 * Math.sqrt(height)
       var latitude = Number($("#transmitter-position > input").val().split(',')[0])
       var longitude = Number($("#transmitter-position > input").val().split(',')[1])
+      var pattern = patterns.find(element => element.id == $("#transmitter-antenna-pattern").val())
+      if (pattern.scale == "logarithmic") pattern.amplitudes.forEach(element => element = Math.pow(10, element / 10.0))
+      pattern.max = Math.max.apply(null, pattern.amplitudes)
       console.log("Transmitter:")
       console.log('\t latitude : ', latitude)
       console.log('\t longitude: ', longitude)
       console.log('\t height   : ', height)
+      console.log('\t pattern  : ', pattern.id)
       console.log("Radio horizon: ", horizon)
+      console.log(pattern.angles)
+      console.log(pattern.amplitudes)
+      console.log(pattern.max)
 
       var rangesN = 10
       var ranges = math.range(horizon / rangesN, horizon, horizon / rangesN, true)._data
-      var anglesN = 361
-      var angles = Array.apply(null, Array(anglesN)).map(function (_, i) { return i; });
       var coordinates = new Array(rangesN)
       for (i = 0; i < rangesN; i++) {
-        coordinates[i] = new Array(anglesN)
-        for (j = 0; j < anglesN; j++) {
-          coordinates[i][j] = turf.destination(turf.point([longitude, latitude]), ranges[i], angles[j]).geometry.coordinates
+        coordinates[i] = new Array(pattern.angles.length)
+        for (j = 0; j < pattern.angles.length; j++) {
+          coordinates[i][j] = turf.destination(turf.point([longitude, latitude]), ranges[i] * (pattern.amplitudes[j] / pattern.max), pattern.angles[j]).geometry.coordinates
         }
       }
       console.log(ranges)
-      console.log(angles)
       console.log(coordinates)
       // plot initial range circle
       map.addLayer({
@@ -427,10 +431,10 @@
       for (i = 0; i < rangesN - 1; i++) {
         var points = []
         points.push(coordinates[i][0])
-        for (j = 0; j < anglesN; j++) {
+        for (j = 0; j < pattern.angles.length; j++) {
           points.push(coordinates[i + 1][j])
         }
-        for (j = anglesN - 1; j > 0; j--) {
+        for (j = pattern.angles.length - 1; j > 0; j--) {
           points.push(coordinates[i][j])
         }
         map.addLayer({
